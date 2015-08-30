@@ -1,3 +1,8 @@
+# Release instructions: https://packaging.python.org/en/latest/distributing.html
+#  % rm -rf dist
+#  % python setup.py sdist
+#  % twine upload dist/*
+
 """A setuptools based setup module."""
 
 # Always prefer setuptools over distutils
@@ -9,12 +14,14 @@ setup(
     # Versions should comply with PEP440.  For a discussion on single-sourcing
     # the version across setup.py and the project code, see
     # https://packaging.python.org/en/latest/single_source_version.html
-    version='1.0.3',
+    version='1.0.4',
 
     description='Automatic Python imports',
     long_description="""
     The autoimp module makes usage of the interactive Python prompt more productive.
     With autoimp, all installed Python modules can be imported with the single statement "from autoimp import *".  The  imported modules are proxy objects which lazily load when first used.
+
+    Install with 'sudo pip install autoimp'. 
 
     Proper installation of autoimp involves placing "from autoimp import *" in your
     PYTHONSTARTUP file. Once autoimp is properly installed, it is no longer necessary to use statements of the form "import X" at the interactive prompt.

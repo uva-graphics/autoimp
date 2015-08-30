@@ -8,7 +8,8 @@ The autoimp module imports all available Python modules automatically at the Pyt
 
     >>> from autoimp import *
     >>> os.stat('.')
-    >>> Image.open('test.bmp')
+    >>> numpy.zeros(5)
+    >>> np.zeros(5)                      # 'np' is an alias for 'numpy'.
     >>> pylab.plot([1,2],[3,4])
     >>> scipy.linalg.eig([[1,2],[3,4]])
     >>> ...

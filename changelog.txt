@@ -1,0 +1,28 @@
+1.0.4   2015-08-30
+ * Alias 'numpy' as 'np' if it is available, since use of 'np' is common.
+
+1.0.3   2015-08-29
+ * Python 3 support.
+   - Connelly Barnes
+
+(In use from 2006 to 2015, but no releases).
+
+1.0.2   2006-09-12
+ * Added autoimp._export_builtins(), which exports all available modules
+   to the builtin namespace.  Use this in sitecustomize.py for editors
+   which do not run PYTHONPATH or editors such as IDLE which do not run
+   PYTHONPATH after executing a script.
+   - Connelly Barnes
+
+1.0.1   2006-07-19
+ * Decreased time that it takes to initially import 'autoimp': we now
+   use a custom algorithm which determines whether a given module in
+   the filesystem is importable rather than using imp.find_module().
+ * The new algorithm also fixes a bug where arbitrary directories were
+   considered to be packages and imported even though they lack
+   __init__.py .
+   - Connelly Barnes
+
+1.0.0   2006-06-11
+ * Initial release
+   - Connelly Barnes

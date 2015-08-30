@@ -9,13 +9,14 @@ To solve this problem, one can now write:
 
   >>> from autoimp import *
   >>> os.stat('.')                     # Module loaded at first use.
-  >>> Image.open('test.bmp')           # Module loaded at first use.
+  >>> numpy.zeros(5)                   # Module loaded at first use.
+  >>> np.zeros(5)                      # 'np' is an alias for 'numpy'.
   >>> pylab.plot([1,2],[3,4])          # Module loaded at first use.
   >>> scipy.linalg.eig([[1,2],[3,4]])  # Module loaded at first use.
   >>> os.stat('..')                    # Module has already been
   >>> ...                              # imported -- subsequent uses
   >>>                                  # of os are fast.
-
+  
 The command "from autoimp import *" imports all modules found in
 sys.path lazily.  This is done by placing lazy-import proxy objects
 in the namespace of module autoimp.  The modules are actually loaded
@@ -41,17 +42,18 @@ lazily imported as well:
 Finally, note that modules with leading underscores are not imported
 (with the exception of __builtin__, __main__, and __future__), nor are
 modules which have the same name as a builtin, such as "repr".  Also
-reload() and help() are defined and exported by this module, so that
-the these commands "do the right thing" when used with proxy import
-objects.  The modified reload calls the __reload__() special method
-on its argument (if available) and likewise for the help() function.
+reload(), help(), and dir() are defined and exported by this module,
+so that the these commands "do the right thing" when used with proxy
+import objects.
 
-Submit bugs and patches to the GitHub project.
+Please submit bugs and patches to the GitHub project.
 
 """
 
-__version__ = '1.0.3'
+__version__ = '1.0.4'
 __all__ = ['reload']         # Lazily imported modules will go here
+
+_aliases = {'np': 'numpy'}
 
 #TODO: .PY .pY .Py, various capitalizations of Python modules/packages.
 #TODO: Test a whole lot on examples of lots of libraries.  Also test with
@@ -281,6 +283,10 @@ def _import_all():
       d[mod] = _RecursiveLazyModule(mod)
       __all__.append(mod)
 
+  for (_alias_source, _alias_target) in _aliases.items():
+    if _alias_target in d:
+      d[_alias_source] = d[_alias_target]
+      __all__.append(_alias_source)
 
 def _export_builtins():
   """
@@ -326,7 +332,6 @@ if _sys.version_info[:2] >= (2, 2):
       return _help(x)
 
 _import_all()
-
 
 # -------------------------------------------------------------------
 # Unit tests
