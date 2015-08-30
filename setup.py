@@ -28,7 +28,7 @@ setup(
     """,
 
     # The project's main homepage.
-    url='https://github.com/connellybarnes/autoimp',
+    url='https://github.com/uva-graphics/autoimp',
 
     # Author details
     author='Connelly Barnes',
