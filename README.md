@@ -11,7 +11,8 @@ The autoimp module imports all available Python modules automatically at the Pyt
     >>> numpy.zeros(5)
     >>> np.zeros(5)                      # 'np' is an alias for 'numpy'.
     >>> pylab.plot([1,2],[3,4])
-    >>> scipy.linalg.eig([[1,2],[3,4]])
+    >>> scipy.linalg.eig([[1,2],[3,4]])  # Sub-modules are also auto-imported
+    >>> skimage.io.imread('a.png')       # Another sub-module example
     >>> ...
 
 The modules imported from autoimp are proxy objects which lazily load when they are first used.
