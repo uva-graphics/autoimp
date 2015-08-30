@@ -18,7 +18,7 @@ The modules imported from autoimp are proxy objects which lazily load when they 
 Python Versions
 ---------------
 
-The autoimp module has been tested on Python 2.7 and 3.3. It has been updated rarely since it was created in 2006.
+The autoimp module has been tested on Python 2.7 and 3.3. It has been updated occasionally since it was created in 2006.
 
 License
 -------
